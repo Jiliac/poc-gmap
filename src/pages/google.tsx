@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 const Home: React.FC = () => {
+  const [selectedAddress, setSelectedAddress] = useState<string | null>(null);
+
+  const handleSubmit = async () => {
+    if (!selectedAddress) {
+      alert("Please select an address");
+      return;
+    }
+
+    const response = await fetch("/api/validate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ address: selectedAddress }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
+
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="w-full max-w-md p-4 bg-white rounded shadow text-black">
@@ -10,7 +28,7 @@ const Home: React.FC = () => {
           <GooglePlacesAutocomplete
             apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
             selectProps={{
-              onChange: (value) => console.log(JSON.stringify(value)),
+              onChange: (value) => setSelectedAddress(value?.label as string),
               styles: {
                 option: (provided) => ({
                   ...provided,
@@ -24,6 +42,13 @@ const Home: React.FC = () => {
               },
             }}
           />
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="mt-4 w-full py-2 px-4 btn btn-primary btn-lg"
+          >
+            Validate Address
+          </button>
         </form>
       </div>
     </div>
