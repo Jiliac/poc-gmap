@@ -1,38 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Google Address Autocomplete and Validation
 
-## Getting Started
+This project is a proof of concept (POC) for integrating Google's Address Autocomplete feature in the frontend and performing address validation on the backend.
 
-First, run the development server:
+## Prerequisites
 
+- Node.js
+- Yarn package manager
+- Google Cloud account with access to Places API and Geocoding API
+
+## Project setup
+
+1. Clone the repository and navigate to the project directory.
+2. Install the project dependencies:
+
+   ```bash
+   yarn install
+   ```
+
+3. Create a .env file in the project root and add your Google API Key:
+
+   ```bash
+   NEXT_PUBLIC_GOOGLE_API_KEY=your-google-api-key
+   ```
+
+## Running the project
+
+To start the development server, run:
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This will start the Next.js development server at `http://localhost:3000`.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Using the application
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Open your browser and navigate to `http://localhost:3000`. You will see an address form with autocomplete capability powered by Google Places API. When you select an address from the dropdown, the address is saved in the application state.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Click the "Validate Address" button to send the selected address to the backend for validation using Google's Geocoding API. If the backend determines the address is valid, it will return `{ valid: true }`; otherwise, it will return `{ valid: false }`.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The response from the backend is logged in the console.
 
-## Learn More
+## Built With
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js
+- React
+- Typescript
+- Google Places API
+- Google Geocoding API
+- react-google-places-autocomplete
+- node-geocoder
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Valentin Manes
 
-## Deploy on Vercel
+## Disclaimer
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is a POC and not intended for use in production without proper error handling, input sanitization, and security measures. Always secure your API keys and be aware of usage limits when working with Google APIs.
