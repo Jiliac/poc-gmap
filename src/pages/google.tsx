@@ -28,7 +28,10 @@ const Home: React.FC = () => {
           <GooglePlacesAutocomplete
             apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
             selectProps={{
-              onChange: (value) => setSelectedAddress(value?.label as string),
+              onChange: (value) => {
+                console.log(JSON.stringify(value, null, "  "));
+                setSelectedAddress(value?.label as string);
+              },
               styles: {
                 option: (provided) => ({
                   ...provided,

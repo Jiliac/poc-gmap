@@ -13,6 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const results = await geocoder.geocode(address);
 
     if (results.length > 0) {
+      console.log(results, null, "  ");
       res.status(200).json({ valid: true });
     } else {
       res.status(200).json({ valid: false });
