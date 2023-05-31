@@ -52,7 +52,7 @@ The response from the backend is logged in the console.
 
 ## Author
 
-Valentin Manes
+Valentin Manès
 
 ## Disclaimer
 
